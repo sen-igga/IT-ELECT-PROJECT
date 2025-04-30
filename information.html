@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infromation</title>
+    <style>
+        body {
+            background-image: url('freebg.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #f3f3f3;
+            -webkit-text-stroke-color: black;
+            -webkit-text-stroke: black 1px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 94%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .skills-section {
+            margin-bottom: 15px;
+        }
+
+        .skills-section label {
+            cursor: pointer;
+        }
+
+        .skills-section div {
+            margin-left: 20px;
+        }
+
+        .skills-section input[type="checkbox"] {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Freelancing Information Form</h1>
+    <form action="/submit" method="post" id="freelancingForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName">
+
+        <label for="middleName">Middle Name:</label>
+        <input type="text" id="middleName" name="middleName">
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName">
+
+        <label for="suffix">Suffix:</label>
+        <input type="text" id="suffix" name="suffix">
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="18">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+
+        <label for="phone">Mobile Number:</label>
+        <input type="tel" id="phone" name="phone">
+
+        <label for="sex">Sex:</label>
+        <select id="sex" name="sex">
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+
+        <div class="skills-section">
+            <label for="skillsDropdown" style="display: inline-flex; align-items: center;">
+                Skills <span style="margin-left: 5px;">▼</span>
+            </label>
+            <div id="skillsDropdown" style="display: none;">
+                <input type="checkbox" id="developer" name="skills" value="developer">
+                <label for="developer">Web Developer</label><br>
+
+                <input type="checkbox" id="artist" name="skills" value="artist">
+                <label for="artist">Artist</label><br>
+
+                <label for="programmerDropdown" style="cursor: pointer; display: inline-flex; align-items: center;">
+                    Programmer <span style="margin-left: 5px;">▼</span>
+                </label>
+                <div id="programmerDropdown" style="display: none; margin-left: 20px;">
+                    <input type="checkbox" id="python" name="skills" value="python">
+                    <label for="python">Python</label><br>
+
+                    <input type="checkbox" id="java" name="skills" value="java">
+                    <label for="java">Java</label><br>
+
+                    <input type="checkbox" id="php" name="skills" value="php">
+                    <label for="php">PHP</label><br>
+                </div>
+            </div>
+        </div>
+
+        <label for="additionalInfo">Additional Information:</label>
+        <textarea id="additionalInfo" name="additionalInfo" rows="4" cols="50" placeholder="Enter any additional information..."></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        const skillsLabel = document.querySelector('label[for="skillsDropdown"]');
+        const skillsDropdown = document.getElementById('skillsDropdown');
+      
+        const programmerLabel = document.querySelector('label[for="programmerDropdown"]');
+        const programmerDropdown = document.getElementById('programmerDropdown');
+      
+        skillsLabel.addEventListener('click', () => {
+          skillsDropdown.style.display = skillsDropdown.style.display === 'none' ? 'block' : 'none';
+        });
+      
+        programmerLabel.addEventListener('click', () => {
+          programmerDropdown.style.display = programmerDropdown.style.display === 'none' ? 'block' : 'none';
+        });
+      
+        document.getElementById('freelancingForm').addEventListener('submit', function(event) {
+          event.preventDefault(); 
+      
+          const firstName = document.getElementById('firstName').value.trim();
+          const lastName = document.getElementById('lastName').value.trim();
+          const age = document.getElementById('age').value.trim();
+          const email = document.getElementById('email').value.trim();
+          const phone = document.getElementById('phone').value.trim();
+          const sex = document.getElementById('sex').value.trim();
+      
+          if (!firstName) {
+            alert('Please enter your First Name.');
+            return;
+          }
+      
+          if (!lastName) {
+            alert('Please enter your Last Name.');
+            return;
+          }
+      
+          if (!age) {
+            alert('Please enter your Age.');
+            return;
+          }
+      
+          if (!email) {
+            alert('Please enter your Email.');
+            return;
+          }
+      
+          if (!phone) {
+            alert('Please enter your Mobile Number.');
+            return;
+          }
+      
+          if (!sex) {
+            alert('Please select your Sex.');
+            return;
+          }
+
+          window.location.href = 'free.html';
+        });
+      </script>
+      
+</body>
+</html>

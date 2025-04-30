@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Information</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      padding-top: 80px;
+    }
+
+    .container {
+      max-width: 900px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .freelancer-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .freelancer-info {
+      display: flex;
+      gap: 15px;
+    }
+
+    .freelancer-info img {
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+    }
+
+    .freelancer-info h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .title {
+      font-weight: bold;
+      margin: 4px 0;
+      color: #555;
+    }
+
+    .location,
+    .rate {
+      font-size: 14px;
+      color: #777;
+    }
+
+    .job-success {
+      color: #007BFF;
+      font-weight: bold;
+    }
+
+    .tags {
+      margin: 10px 0;
+    }
+
+    .tags span {
+      background: #e7f3ff;
+      color: #007BFF;
+      font-size: 12px;
+      padding: 4px 8px;
+      margin-right: 6px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .description {
+      font-size: 14px;
+      color: #444;
+    }
+
+    .invite-btn {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .invite-btn:hover {
+      background: #218838;
+    }
+
+    .confirmation-text {
+      margin-top: 10px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar bg-body-tertiary fixed-top">
+            <div class="container-fluid">
+                <!-- Left side content -->
+                <div class="d-flex align-items-center">
+                    <form class="d-flex me-3" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                    <a class="nav-link" href="hire.html">Hire</a>
+                    <span class="mx-2"></span>
+                    <a class="nav-link" href="apply.html">Apply</a>
+                    <span class="mx-2"></span>
+                    <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postModal">Post</a>
+                </div>
+
+                <!-- Right side content -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu Bar</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Records</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Account
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="index.html">Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1>Job Hiring</h1>
+
+    <!-- Freelancer Card -->
+    <div class="freelancer-card">
+      <div class="freelancer-info">
+        <img src="yumeko.jpg" alt="Freelancer Photo">
+        <div>
+          <h2>Minami Hamabe</h2>
+          <p class="title">LF Expert in Python</p>
+          <p class="location">Philippines</p>
+          <p class="rate">$3.5/hr</p>
+          <div class="tags">
+            <span>Developer</span>
+            <span>Python</span>
+            <span>Backend</span>
+            <span>Freelancer</span>
+          </div>
+          <p class="description">Looking for Expert Developer who exel in Python for our Backend</p>
+          <p class="confirmation-text" style="display: none;">You have applied for this job</p>
+        </div>
+      </div>
+      <button class="invite-btn apply-btn">Apply</button>
+    </div>
+
+    <div class="freelancer-card">
+      <div class="freelancer-info">
+        <img src="EirAoi.jpg" alt="Freelancer Photo">
+        <div>
+          <h2>Eir Aoi</h2>
+          <p class="title">LF Web Designer</p>
+          <p class="location">Philippines</p>
+          <p class="rate">$100 • <span class="job-success">upon completion</span></p>
+          <div class="tags">
+            <span>Developer</span>
+            <span>Artist</span>
+            <span>Web Design</span>
+            <span>Front End</span>
+            <span>Freelancer</span>
+          </div>
+          <p class="description">Looking for Web Designer who have good creativity and originality</p>
+          <p class="confirmation-text" style="display: none;">You have applied for this job</p>
+        </div>
+      </div>
+      <button class="invite-btn apply-btn">Apply</button>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="confirmApplyModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmModalLabel">Confirm Application</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to apply?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+          <button type="button" class="btn btn-primary" id="confirmApplyYes">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="postModalLabel">Post a Job</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="postJobForm">
+            <div class="mb-3">
+              <label for="jobTitle" class="form-label">Job Title</label>
+              <input type="text" class="form-control" id="jobTitle" placeholder="Enter job title" required>
+            </div>
+            <div class="mb-3">
+              <label for="jobDescription" class="form-label">Job Description</label>
+              <textarea class="form-control" id="jobDescription" rows="4" placeholder="Enter job description" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="jobRate" class="form-label">Rate</label>
+              <input type="number" class="form-control" id="jobRate" placeholder="Enter rate (e.g., $/hr)" required>
+            </div>
+            <div class="mb-3">
+              <label for="jobTags" class="form-label">Tags</label>
+              <input type="text" class="form-control" id="jobTags" placeholder="Enter tags (comma-separated)" required>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancelPost">Cancel</button>
+          <button type="submit" class="btn btn-primary" form="postJobForm" id="postJobButton">Post Job</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JavaScript Logic -->
+  <script>
+    let currentCard = null;
+
+    document.querySelectorAll('.apply-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        currentCard = button.closest('.freelancer-card');
+        const modal = new bootstrap.Modal(document.getElementById('confirmApplyModal'));
+        modal.show();
+      });
+    });
+
+    document.getElementById('confirmApplyYes').addEventListener('click', () => {
+      if (currentCard) {
+        const message = currentCard.querySelector('.confirmation-text');
+        message.style.display = 'block';
+      }
+      const modalEl = document.getElementById('confirmApplyModal');
+      const modal = bootstrap.Modal.getInstance(modalEl);
+      modal.hide();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>dashboard</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #FB5CA1;
+      padding-top: 80px;
+    }
+
+    .container {
+      max-width: 900px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #D64085;
+    }
+
+    .freelancer-card {
+      background: black;
+      border: 1px solid #ffffff;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .freelancer-info {
+      display: flex;
+      gap: 15px;
+    }
+
+    .freelancer-info img {
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+    }
+
+    .freelancer-info h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .title {
+      font-weight: bold;
+      margin: 4px 0;
+      color: #FF8DAD;
+    }
+
+    .location,
+    .rate {
+      font-size: 14px;
+      color: #FF8DAD;
+    }
+
+    .job-success {
+      color: #D64085;
+      font-weight: bold;
+    }
+
+    .tags {
+      margin: 10px 0;
+    }
+
+    .tags span {
+      background: #FF8DAD;
+      color: #000000;
+      font-size: 12px;
+      padding: 4px 8px;
+      margin-right: 6px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .description {
+      font-size: 14px;
+      color: #FF8DAD;
+    }
+
+    .invite-btn {
+      background: #D64085;
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .invite-btn:hover {
+      background: #218838;
+    }
+
+    .confirmation-text {
+      margin-top: 10px;
+      color: #FB5CA1;
+      font-weight: bold;
+    }
+
+    .navbar {
+      background-color: black !important; /* Change header color */
+    }
+
+    .offcanvas {
+      background-color: #D64085 !important; /* Change menu bar color */
+    }
+
+    .offcanvas .offcanvas-title,
+    .offcanvas .nav-link,
+    .offcanvas .dropdown-item {
+      color: #fff !important; /* Ensure text is visible on the new background */
+    }
+
+    .offcanvas .btn-close {
+      filter: invert(1); /* Make the close button visible on dark background */
+    }
+    
+    .btn-outline-success {
+      color: #D64085; /* Text color */
+      background-color: #fff; /* Background color */
+      border-color: #fff; /* Border color */
+    }
+
+    .btn-outline-success:hover {
+      color: #fff; /* Text color on hover */
+      background-color: #D64085; /* Background color on hover */
+      border-color: #D64085; /* Border color on hover */
+    }
+
+    .image-stroke {
+      border: 3px solid #D64085; /* Stroke color */
+      border-radius: 8px; /* Optional: Add rounded corners */
+    }
+
+    .membershipBtn {
+      text-decoration: none;
+      color: white;
+      background-color: #28a745;
+      
+    }
+    .toptxtcolor {
+        color: #FF8DAD;
+    }
+   
+  </style>
+</head>
+<body>
+    <header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container-fluid">
+      <!-- Logo -->
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="logo.png" alt="Logo" style="height: 50px; margin-right: 10px;">
+        <span class="fw-bold" style="color: #D64085;">Freelancer Website</span>
+      </a>
+
+      <!-- Search Bar -->
+      <form class="d-flex me-auto ms-3" role="search" style="flex: 1; max-width: 400px;">
+        <div class="input-group">
+          <span class="input-group-text bg-light border-0">
+            <i class="bi bi-search"></i> <!-- Bootstrap search icon -->
+          </span>
+          <input class="form-control border-0" type="search" placeholder="Search" aria-label="Search">
+        </div>
+        <a class="btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#postModal" style="color: #000000; background-color: #D64085">Post</a>
+
+      </form>
+
+      <!-- Add Post Button -->
+     
+      <!-- Icons and Profile Dropdown -->
+      <div class="d-flex align-items-center">
+        <a href="#" class="text-dark me-3">
+          <i class="bi bi-question-circle"></i> <!-- Help Icon -->
+        </a>
+        <a href="#" class="text-dark me-3">
+          <i class="bi bi-bell"></i> <!-- Notifications Icon -->
+        </a>
+        <a href="#" class="text-dark me-3">
+          <i class="bi bi-gear"></i> <!-- Settings Icon -->
+        </a>
+
+        <!-- Profile Dropdown -->
+        <div class="dropdown">
+          <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            
+            <img src="pic1.jpg" alt="Profile" class="rounded-circle me-2" style="width: 30px; height: 30px;"> <!-- Replace with profile image -->
+            
+            <span style="color: #D64085;">Clark Gravador</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="profileDropdown" style="width: 250px; background-color: #FF8DAD;">
+            <li class="dropdown-item text-center">
+              <img src="pic1.jpg" alt="Profile" class="rounded-circle mb-2" style="width: 50px; height: 50px;"> <!-- Replace with profile image -->
+              <p class="mb-0 fw-bold">Clark Gravador</p>
+              <p class="text-muted small" >Freelancer</p>
+              <div class="form-check form-switch d-flex justify-content-center">
+                <input class="form-check-input" type="checkbox" id="onlineStatus" checked>
+                <label class="form-check-label ms-2" for="onlineStatus">Online for messages</label>
+              </div>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Your Profile</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-graph-up-arrow me-2"></i>Stats and Trends</a></li>
+            <li><a class="dropdown-item" href="#membershipModal" data-bs-toggle="modal"><i class="bi bi-wallet2 me-2"></i>Membership Plan ✔️</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-link-45deg me-2"></i>Connection</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-app-indicator me-2"></i>Apps and Offers</a></li>
+            <li><a class="dropdown-item" href="dashboard.html"><i class="bi bi-sun me-2"></i>Theme: Purple ✔️</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Account Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="index.html"><i class="bi bi-box-arrow-right me-2"></i>Log Out ✔️</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="container-fluid">
+    <h1 class="text-center" style="margin-top: 1%; color: black;">Job Hiring</h1>
+    <div class="row">
+      <!-- Top Contributor Section -->
+      <div class="col-md-3">
+        <div class="top-contributor" style="background-color: black; padding: 15px; border-radius: 8px; border: 1px solid #fff;">
+          <h3 style="color: #D64085;">Top Contributor</h3>
+          <ul class="list-group">
+            <li class="list-group-item d-flex align-items-center" style="background-color: black; border: none;">
+              <a href="#" data-bs-toggle="modal" data-bs-target="#modalClarkInfo" class="d-flex align-items-center text-decoration-none" style="color: #D64085;">
+                <img src="pic1.jpg" alt="Profile Photo" class="me-3 image-stroke" style="width: 50px; height: 50px; border-radius: 50%;">
+                <div>
+                  <strong>Clark</strong><br>
+                  </a>
+                    <div class="toptxtcolor">
+                  <span>99.99% Success Rate</span><br>
+                  <span>999 Projects Done</span>
+                    </div>
+                </div>
+              
+            </li>
+            <li class="list-group-item d-flex align-items-center" style="background-color: black; border: none;">
+              <a href="#" data-bs-toggle="modal" data-bs-target="#modalRaivenInfo" class="d-flex align-items-center text-decoration-none" style="color: #D64085;" >
+                <img src="pic2.jpg" alt="Profile Photo" class="me-3 image-stroke" style="width: 50px; height: 50px; border-radius: 50%;">
+                <div>
+                  <strong>Raiven</strong><br>
+                   </a>
+                   <div class="toptxtcolor">
+                  <span>88.88% Success Rate</span><br>
+                  <span>888 Projects Done</span>
+                    </div>
+                </div>
+             
+            </li>
+            <li class="list-group-item d-flex align-items-center" style="background-color: black; border: none;">
+              <a href="#" data-bs-toggle="modal" data-bs-target="#modalReijiInfo" class="d-flex align-items-center text-decoration-none" style="color: #D64085;">
+                <img src="pic3.jpg" alt="Profile Photo" class="me-3 image-stroke" style="width: 50px; height: 50px; border-radius: 50%;">
+                <div>
+                  <strong>Reiji</strong><br>
+                  </a>
+                  <div class="toptxtcolor">
+                    <span>77.77% Success Rate</span><br>
+                    <span>777 Projects Done</span>
+                      </div>
+                </div>
+              
+            </li>
+          </ul>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="statistics mt-4" style="background-color: #000000; padding: 15px; border-radius: 8px; border: 1px solid #fff;">
+          <h3 style="color: #D64085;">Monthly Update</h3>
+          <canvas id="monthlyUpdateChart" style="background-color: #FF8DAD; border-radius: 8px; padding: 10px;"></canvas>
+
+          <h4 class="mt-4" style="color: #D64085;">Most Applied Job</h4>
+          <canvas id="mostAppliedJobChart" style="background-color: #FF8DAD; border-radius: 8px; padding: 10px;"></canvas>
+        </div>
+
+        
+
+        
+        
+      </div>
+
+      <!-- Freelancer Cards Section -->
+      <div class="col-md-6">
+        <div class="freelancer-card">
+            <div class="freelancer-info">
+              <a href="#"> <img src="yumeko.jpg" alt="Freelancer Photo" class="image-stroke d-flex align-items-center text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalMinamiInfo"> </a>
+              <div>
+                <a href="#" style="text-decoration: none; color: #D64085;"><h2 class="d-flex align-items-center text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalMinamiInfo">Minami Hamabe</h2>  </a>
+                <p class="title">LF Expert in Python</p>
+                <p class="location">Philippines</p>
+                <p class="rate">$3.5/hr</p>
+                <div class="tags">
+                  <span>Developer</span>
+                  <span>Python</span>
+                  <span>Backend</span>
+                  <span>Freelancer</span>
+                </div>
+                <p class="description">Looking for Expert Developer who excels in Python for our Backend</p>
+              </div>
+            </div>
+          <button class="invite-btn apply-btn">Apply</button>
+        </div>
+
+        <div class="freelancer-card">
+          
+            <div class="freelancer-info">
+             <a href="#" style="text-decoration: none;"> <img src="EirAoi.webp" alt="Freelancer Photo" class="image-stroke" data-bs-toggle="modal" data-bs-target="#modalEirAoi"> </a> 
+              <div>
+                <a href="#" style="text-decoration: none; color: #D64085;"> <h2 class="d-flex align-items-center text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalEirInfo">Eir Aoi</h2> </a>
+                <p class="title">LF Web Designer</p>
+                <p class="location">Philippines</p>
+                <p class="rate">$100 • <span class="job-success">upon completion</span></p>
+                <div class="tags">
+                  <span>Developer</span>
+                  <span>Artist</span>
+                  <span>Web Design</span>
+                  <span>Front End</span>
+                  <span>Freelancer</span>
+                </div>
+                <p class="description">Looking for Web Designer who has good creativity and originality</p>
+              </div>
+            </div>
+          
+          <button class="invite-btn apply-btn">Apply</button>
+        </div>
+
+        <div class="freelancer-card">
+          
+            <div class="freelancer-info">
+              <a href="#"> <img src="charess.jpg" alt="Freelancer Photo" class="image-stroke" data-bs-toggle="modal" data-bs-target="#modalEirAoi"> </a>
+              <div>
+                <a href="#" style="text-decoration: none; color: #D64085;"> <h2 class="d-flex align-items-center text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalCharessInfo">Charess</h2> </a>
+                <p class="title">LF Web Desining</p>
+                <p class="location">Philippines</p>
+                <p class="rate">$3.5/hr</p>
+                <div class="tags">
+                  <span>Developer</span>
+                  <span>Python</span>
+                  <span>Backend</span>
+                  <span>Freelancer</span>
+                </div>
+                <p class="description">Looking for Expert Developer who excels in Python for our Backend</p>
+              </div>
+            </div>
+         
+          <button class="invite-btn apply-btn">Apply</button>
+        </div>
+
+
+      </div>
+
+      <!-- Your Status Section -->
+      <div class="col-md-3">
+        <div class="your-status" style="background-color: #000000; padding: 15px; border-radius: 8px; border: 1px solid #fff;">
+          <h3 style="text-align: center; color: #D64085;">Your Status</h3>
+          <ul class="list-group">
+            <li class="list-group-item" style="background-color: #FF8DAD; border: none;">
+              <strong>Project Completed:</strong> 378
+            </li>
+            <li class="list-group-item" style="background-color: #FF8DAD; border: none;">
+              <strong>Total Earn:</strong> $3930
+            </li>
+            <li class="list-group-item" style="background-color: #FF8DAD; border: none;">
+              <strong>Success Rate:</strong> 100%
+            </li>
+            <li class="list-group-item" style="background-color: #FF8DAD; border: none;">
+              <strong>Rating:</strong> 5 ★
+            </li>
+            <li class="list-group-item" style="background-color: #FF8DAD; border: none;">
+              <strong>Started:</strong> June 16, 2022
+            </li>
+          </ul>
+
+          <!-- Customer Comments Section -->
+          <div class="customer-comments mt-4" style="background-color: #FF8DAD; padding: 10px; border-radius: 8px; height: 250px; overflow-y: auto;">
+            <h4 style="text-align: center; color: #000000;">Customer Comments</h4>
+            
+            <div id="commentsContainer">
+              <!-- First Comment -->
+              <div class="comment d-flex align-items-start" style="margin-top: 10px;">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalCharessInfo" class="d-flex align-items-center text-decoration-none text-dark">
+                <img src="charess.jpg" alt="Charess" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;" class="image-stroke">
+                <div>
+                  <p style="margin: 0; font-weight: bold;">Charess</p>
+                  </a>
+                  <p style="margin: 0; color: #FFD700;">5 ★★★★★</p>
+                  <p style="margin: 0; font-size: 14px;">Nicely Done, I love the website you made for me.</p>
+                </div>
+              </div>
+          
+              <!-- Second Comment -->
+              <div class="comment d-flex align-items-start" style="margin-top: 10px;">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalLiSaInfo" class="d-flex align-items-center text-decoration-none text-dark">
+                <img src="Lisa.jpg" alt="LiSa" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;" class="image-stroke">
+                <div>
+                  <p style="margin: 0; font-weight: bold;">LiSa</p>
+                  </a>
+                  <p style="margin: 0; color: #FFD700;">5 ★★★★★</p>
+                  <p style="margin: 0; font-size: 14px;">Nice Portfolio!</p>
+                </div>
+              </div>
+              
+              <!-- Third Comment -->
+              <div class="comment d-flex align-items-start" style="margin-top: 10px;">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalLiSaInfo" class="d-flex align-items-center text-decoration-none text-dark">
+                <img src="yumeko.jpg" alt="minami" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;" class="image-stroke">
+                <div>
+                  <p style="margin: 0; font-weight: bold;">Minami Hamabe</p>
+                  </a>
+                  <p style="margin: 0; color: #FFD700;">5 ★★★★★</p>
+                  <p style="margin: 0; font-size: 14px;">great back-end development skill</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- Monthly Projects Done Section -->
+        <div class="statistics mt-4" style="background-color: #000000; padding: 15px; border-radius: 8px; border: 1px solid #fff;">
+          <h4 style="text-align: center; color: #D64085;">Monthly Projects Done</h4>
+          <canvas id="monthlyProjectsChart" style="background-color: #fff; border-radius: 8px; padding: 10px;"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+
+  <!-- Membership Modal -->
+  <div class="modal fade" id="membershipModal" tabindex="-1" aria-labelledby="membershipModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content" style="background-color: #FB5CA1; color: white;">
+            <div class="modal-header" style="background-color: #D64085; color: white;">
+                <h5 class="modal-title" id="membershipModalLabel">Membership Plans</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <div style="width: 400px; background-color: #FF8DAD; color: rgb(0, 0, 0); padding: 10px; border-radius: 8px;">
+                        <h2>PLUS: $20/month</h2>
+                        <h5>PERKS:</h3>
+                        <ul>
+                            <li>Monthly Skill Improvement Graph</li>
+                            <li>Hourly Protection, securing your earnings</li>
+                            <li>Limited reports and functionality</li>
+                        </ul>
+                        <button class="membershipBtn">AVAIL</button>
+                    </div>
+                    <div style="width: 400px; background-color: #FF8DAD; color: rgb(0, 0, 0); padding: 10px; border-radius: 8px;">
+                        <h2>PRO+: $40/month</h2>
+                        <h5>PERKS:</h3>
+                        <ul>
+                            <li>Includes all in PLUS Subscription and:</li>
+                            <li>Recommended jobs</li>
+                            <li>Limited use of AI for convenience</li>
+                        </ul>
+                        <button class="membershipBtn">AVAIL</button>
+                    </div>
+                    <div style="width: 400px; background-color: #FF8DAD; color: rgb(0, 0, 0); padding: 10px; border-radius: 8px;">
+                        <h2>VIP: $100/month</h2>
+                        <h5>PERKS:</h3>
+                        <ul>
+                            <li>Includes all in PLUS and PRO+ and:</li>
+                            <li>Unlimited use of AI for help</li>
+                            <li>Customize your profile anytime</li>
+                            <li>Get notifications from recommended jobs</li>
+                        </ul>
+                        <button class="membershipBtn">AVAIL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  <!-- Modal for Confirmation -->
+  <div class="modal fade" id="confirmApplyModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmModalLabel">Confirm Application</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to apply?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+          <button type="button" class="btn btn-primary" id="confirmApplyYes">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal for Posting a Job -->
+  <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: #FF8DAD;">
+        <div class="modal-header">
+          <h5 class="modal-title" id="postModalLabel">Post a Job</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="postJobForm">
+            <div class="mb-3">
+              <label for="jobTitle" class="form-label">Job Title</label>
+              <input type="text" class="form-control" id="jobTitle" placeholder="Enter job title" required>
+            </div>
+            <div class="mb-3">
+              <label for="jobDescription" class="form-label">Job Description</label>
+              <textarea class="form-control" id="jobDescription" rows="4" placeholder="Enter job description" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="jobRate" class="form-label">Rate</label>
+              <input type="number" class="form-control" id="jobRate" placeholder="Enter rate (e.g., $/hr)" required>
+            </div>
+            <div class="mb-3">
+              <label for="jobTags" class="form-label">Tags</label>
+              <input type="text" class="form-control" id="jobTags" placeholder="Enter tags (comma-separated)" required>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancelPost">Cancel</button>
+          <button type="submit" class="btn btn-primary" form="postJobForm" id="postJobButton">Post Job</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Clark -->
+  <div class="modal fade" id="modalClarkInfo" tabindex="-1" aria-labelledby="contributorModalClarkLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: #FF8DAD;">
+        <div class="modal-header">
+          <h5 class="modal-title" id="contributorModalClarkLabel">Clark's Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="pic1.jpg" alt="Clark's Profile Photo" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px;">
+          <p><strong>Name:</strong> Clark</p>
+          <p><strong>Skills:</strong> Python, Backend Development</p>
+          <p><strong>Mobile Number:</strong> +1234567890</p>
+          <p><strong>Gmail:</strong> clark@example.com</p>
+          <p><strong>Total Projects Done:</strong> 999</p>
+          <p><strong>Rate:</strong> 4.5 ★</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Message Me</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Raiven -->
+  <div class="modal fade" id="modalRaivenInfo" tabindex="-1" aria-labelledby="contributorModalRaivenLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: #FF8DAD;">
+        <div class="modal-header">
+          <h5 class="modal-title" id="contributorModalRaivenLabel">Raiven's Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="pic2.jpg" alt="Raiven's Profile Photo" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px;">
+          <p><strong>Name:</strong> Raiven</p>
+          <p><strong>Skills:</strong> Web Design, Frontend Development</p>
+          <p><strong>Mobile Number:</strong> +9876543210</p>
+          <p><strong>Gmail:</strong> raiven@example.com</p>
+          <p><strong>Total Projects Done:</strong> 888</p>
+          <p><strong>Rate:</strong> 4.7 ★</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Message Me</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Reiji -->
+  <div class="modal fade" id="modalReijiInfo" tabindex="-1" aria-labelledby="contributorModalReijiLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: #FF8DAD;">
+        <div class="modal-header">
+          <h5 class="modal-title" id="contributorModalReijiLabel">Reiji's Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="pic3.jpg" alt="Reiji's Profile Photo" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px;">
+          <p><strong>Name:</strong> Reiji</p>
+          <p><strong>Skills:</strong> Graphic Design, UI/UX</p>
+          <p><strong>Mobile Number:</strong> +1122334455</p>
+          <p><strong>Gmail:</strong> reiji@example.com</p>
+          <p><strong>Total Projects Done:</strong> 777</p>
+          <p><strong>Rate:</strong> 4.3 ★</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Message Me</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Minami Hamabe -->
+  <div class="modal fade" id="modalMinamiInfo" tabindex="-1" aria-labelledby="freelancerModalMinamiLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: #FF8DAD;">
+        <div class="modal-header">
+          <h5 class="modal-title" id="freelancerModalMinamiLabel">Minami Hamabe's Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="yumeko.jpg" alt="Minami's Profile Photo" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px;">
+          
+          <p><strong>Name:</strong> Minami Hamabe</p>
+          <p><strong>Skills:</strong> Python, Backend Development</p>
+          <p><strong>Mobile Number:</strong> +1234567890</p>
+          <p><strong>Gmail:</strong> minami@example.com</p>
+          <p><strong>Total Projects Done:</strong> 500</p>
+          <p><strong>Rate:</strong> 4.8 ★</p>
+        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Message Me</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Eir Aoi -->
+  <div class="modal fade" id="modalEirInfo" tabindex="-1" aria-labelledby="freelancerModalEirLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: #FF8DAD;">
+        <div class="modal-header">
+          <h5 class="modal-title" id="freelancerModalEirLabel">Eir Aoi's Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="EirAoi.webp" alt="Eir's Profile Photo" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px;">
+          <p><strong>Name:</strong> Eir Aoi</p>
+          <p><strong>Skills:</strong> Web Design, Frontend Development</p>
+          <p><strong>Mobile Number:</strong> +9876543210</p>
+          <p><strong>Gmail:</strong> eir@example.com</p>
+          <p><strong>Total Projects Done:</strong> 300</p>
+          <p><strong>Rate:</strong> 4.6 ★</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Message Me</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- Modal for Charess -->
+  <div class="modal fade" id="modalCharessInfo" tabindex="-1" aria-labelledby="modalCharessLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: #FF8DAD;">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCharessLabel">Charess' Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="charess.jpg" alt="Charess's Profile Photo" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px;">
+          <p><strong>Name:</strong> Charess</p>
+          <p><strong>Skills:</strong>Cosplayer, Artist, Designer</p>
+          <p><strong>Mobile Number:</strong> +9876543210</p>
+          <p><strong>Gmail:</strong> Charess@example.com</p>
+          <p><strong>Total Projects Done:</strong> 10</p>
+          <p><strong>Rate:</strong> 5 ★</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Message Me</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for LiSa -->
+  <div class="modal fade" id="modalLiSaInfo" tabindex="-1" aria-labelledby="modalLiSaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: #FF8DAD;">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLiSaLabel">LiSa's Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="Lisa.jpg" alt="LiSa's Profile Photo" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px;">
+          <p><strong>Name:</strong> LiSa</p>
+          <p><strong>Skills:</strong>Artist, Singer</p>
+          <p><strong>Mobile Number:</strong> +9876543210</p>
+          <p><strong>Gmail:</strong> LiSachan@example.com</p>
+          <p><strong>Total Projects Done:</strong> 5</p>
+          <p><strong>Rate:</strong> 5 ★</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Message Me</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JavaScript Logic -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    let currentCard = null;
+
+    document.querySelectorAll('.apply-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        currentCard = button.closest('.freelancer-card');
+        const modal = new bootstrap.Modal(document.getElementById('confirmApplyModal'));
+        modal.show();
+      });
+    });
+
+    document.getElementById('confirmApplyYes').addEventListener('click', () => {
+      if (currentCard) {
+        // Check if the confirmation text already exists
+        let message = currentCard.querySelector('.confirmation-text');
+        if (!message) {
+          // Create and append the confirmation text
+          message = document.createElement('p');
+          message.className = 'confirmation-text';
+          message.textContent = 'You have successfully applied for this job!';
+          currentCard.appendChild(message);
+        }
+      }
+      const modalEl = document.getElementById('confirmApplyModal');
+      const modal = bootstrap.Modal.getInstance(modalEl);
+      modal.hide();
+    });
+
+          // Monthly Update Chart
+          const chartMonthly = document.getElementById('monthlyUpdateChart').getContext('2d');
+          new Chart(chartMonthly, {
+            type: 'bar',
+            data: {
+              labels: ['Total Projects Done', 'Total User Applications', 'Total Users'],
+              datasets: [{
+                label: 'Monthly Update',
+                data: [8000, 5000, 7000], // Replace with your data
+                backgroundColor: ['#D64085', '#f80275', '#FB5CA1'],
+                borderColor: ['#5A2E9D', '#A17BBF', '#D64085'],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: {
+                  display: false
+                }
+              }
+            }
+          });
+
+          // Most Applied Job Chart
+          const chartApplied = document.getElementById('mostAppliedJobChart').getContext('2d');
+          new Chart(chartApplied, {
+            type: 'bar',
+            data: {
+              labels: ['Python Developer', 'Web Designer', 'UX/UI Designer'],
+              datasets: [{
+                label: 'Most Applied Job',
+                data: [500, 780, 650], // Replace with your data
+                backgroundColor: ['#D64085', '#f80275', '#FB5CA1'],
+                borderColor: ['#5A2E9D', '#A17BBF', '#D64085'],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: {
+                  display: false
+                }
+              }
+            }
+          });
+
+          // Monthly Projects Done Chart
+          const monthlyProjectsCtx = document.getElementById('monthlyProjectsChart').getContext('2d');
+          new Chart(monthlyProjectsCtx, {
+            type: 'line',
+            data: {
+              labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+              datasets: [{
+                label: 'Projects Done',
+                data: [25, 15, 20, 50, 40, 35, 20, 15, 23, 30, 45, 50], // Replace with your data
+                backgroundColor: 'rgba(123, 75, 191, 0.2)',
+                borderColor: '#D64085',
+                borderWidth: 2,
+                tension: 0.4, // Smooth curve
+                fill: true
+              }]  
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: {
+                  display: true,
+                  position: 'top'
+                }
+              }
+            }
+          });
+        
+  </script>
+</body>
+</html>
